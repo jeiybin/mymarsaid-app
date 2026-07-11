@@ -169,4 +169,4 @@ def sudah_lunas(cursor, id_rumah):
 # ======================
 def cek_awal_bulan():
 
-    return datetime.now().day == 11
+    return True
