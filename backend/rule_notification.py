@@ -123,7 +123,7 @@ def cek_jadwal(kategori):
 def cek_setelah_jatuh_tempo():
 
 
-    hari = 11
+    hari = 27
 
     jatuh_tempo = 24
 
