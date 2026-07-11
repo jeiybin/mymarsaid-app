@@ -300,6 +300,15 @@ def run_notification_scheduler():
 
     cek_notifikasi()
 
+@app.route('/test_notifikasi_iuran')
+def test_notifikasi_iuran():
+
+    cek_notifikasi()
+
+    return jsonify({
+        "status": "success",
+        "message": "Rule notification dijalankan"
+    })
 
 # =========================
 # BACKGROUND SCHEDULER
