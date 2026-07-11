@@ -20,11 +20,14 @@ CORS(app)
 # KONEKSI DATABASE
 # =========================
 
+import os
+
 db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="",
-    database="iuran_app"
+    host=os.getenv("MYSQLHOST"),
+    user=os.getenv("MYSQLUSER"),
+    password=os.getenv("MYSQLPASSWORD"),
+    database=os.getenv("MYSQLDATABASE"),
+    port=int(os.getenv("MYSQLPORT"))
 )
 
 # =========================
