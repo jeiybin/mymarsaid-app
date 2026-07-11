@@ -116,8 +116,8 @@ def save_fcm_token():
 
     data = request.get_json()
 
-    id_user = data.get("id")
-    token = data.get("token")
+    id_user = data.get("id") or data.get("id_user")
+    token = data.get("token") or data.get("fcm_token")
 
     if not id_user or not token:
         return jsonify({
@@ -126,6 +126,12 @@ def save_fcm_token():
         }), 400
 
     cursor = db.cursor()
+
+    cursor.execute("""
+        UPDATE users
+        SET fcm_token = NULL
+        WHERE fcm_token = %s
+    """, (token,))
 
     cursor.execute("""
         UPDATE users
