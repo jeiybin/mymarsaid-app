@@ -300,6 +300,7 @@ def run_notification_scheduler():
 
     cek_notifikasi()
 
+#test
 @app.route('/test_notifikasi_iuran')
 def test_notifikasi_iuran():
 
