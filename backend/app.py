@@ -229,7 +229,7 @@ def cek_notifikasi():
                 db,
                 warga["id"],
                 "Pengingat Iuran Bulanan",
-                f"Halo {warga['nama']}, iuran bulan ini sudah dimulai."
+                f"Halo {warga['nama']}, periode pembayaran iuran bulan ini telah dibuka. Saatnya melakukan pembayaran."
             )
 
             if success:
@@ -246,7 +246,7 @@ def cek_notifikasi():
                 db,
                 warga["id"],
                 "Pengingat Iuran",
-                f"Halo {warga['nama']}, jangan lupa membayar iuran bulan ini."
+                f"Halo {warga['nama']}, kami mengingatkan untuk melakukan pembayaran iuran bulan ini sesuai jadwal. Terima kasih."
             )
 
             if success:
@@ -265,7 +265,7 @@ def cek_notifikasi():
                     db,
                     warga["id"],
                     "Iuran Melewati Jatuh Tempo",
-                    f"Halo {warga['nama']}, iuran Anda telah melewati batas pembayaran."
+                    f"Halo {warga['nama']}, pembayaran iuran bulan ini belum dilakukan. Anda telah melewati batas pembayaran."
                 )
 
                 if success:
