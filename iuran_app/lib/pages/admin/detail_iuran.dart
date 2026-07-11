@@ -1,15 +1,8 @@
-// ==============================
-// IMPORT
-// ==============================
-
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-
-// ==============================
-// DETAIL IURAN PAGE
-// ==============================
+import 'package:iuran_app/api.dart';
 
 class DetailIuran extends StatefulWidget {
 
@@ -75,7 +68,7 @@ class _DetailIuranState
 
         Uri.parse(
 
-          "http://10.0.2.2:5000/detail_iuran/"
+          "${Api.baseUrl}/detail_iuran/"
           "${widget.data['id_rumah']}"
           "?bulan=${widget.selectedMonth}"
           "&tahun=${widget.selectedYear}",
@@ -276,7 +269,7 @@ class _DetailIuranState
 
                         Uri.parse(
 
-                          "http://10.0.2.2:5000/update_iuran",
+                          "${Api.baseUrl}/update_iuran",
                         ),
 
                         headers: {

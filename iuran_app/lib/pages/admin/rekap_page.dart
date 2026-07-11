@@ -7,6 +7,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'drawer_admin.dart';
 import 'detail_pemasukan.dart';
 import 'detail_pengeluaran.dart';
+import 'package:iuran_app/api.dart';
 
 class RekapPage extends StatefulWidget {
   @override
@@ -70,7 +71,7 @@ class _RekapPageState extends State<RekapPage> {
     try {
       final response = await http.get(
         Uri.parse(
-          "http://10.0.2.2:5000/rekap"
+          "${Api.baseUrl}/rekap"
           "?bulan=$selectedMonth"
           "&tahun=$selectedYear",
         ),
@@ -102,7 +103,7 @@ class _RekapPageState extends State<RekapPage> {
     try {
       final response = await http.get(
         Uri.parse(
-          "http://10.0.2.2:5000/grafik_rekap"
+          "${Api.baseUrl}/grafik_rekap"
           "?tahun=$selectedYear",
         ),
       );

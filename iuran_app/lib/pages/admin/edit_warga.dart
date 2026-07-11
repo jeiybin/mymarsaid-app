@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'drawer_admin.dart';
+import 'package:iuran_app/api.dart';
 
 class EditWarga extends StatefulWidget {
   final Map data;
@@ -49,7 +50,7 @@ class _EditWargaState extends State<EditWarga> {
 
   try {
         final response = await http.put(
-          Uri.parse("http://10.0.2.2:5000/edit_warga/${widget.data['id_warga']}"),
+          Uri.parse("${Api.baseUrl}/edit_warga/${widget.data['id_warga']}"),
           headers: {
             "Content-Type": "application/json",
           },

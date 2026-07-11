@@ -1,8 +1,8 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
+import 'package:iuran_app/api.dart';
 
 class WhatsappService {
   static Future<void> chatPengurus(BuildContext context) async {
@@ -44,7 +44,7 @@ class WhatsappService {
 
     try {
       final response = await http.get(
-        Uri.parse("http://10.0.2.2:5000/pengurus"),
+        Uri.parse("${Api.baseUrl}/pengurus"),
       );
 
       if (response.statusCode != 200) {

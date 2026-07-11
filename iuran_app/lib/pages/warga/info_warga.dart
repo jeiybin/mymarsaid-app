@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:iuran_app/api.dart';
 
 class InfoWarga extends StatefulWidget {
   final Map data;
@@ -24,7 +25,7 @@ class _InfoWargaState extends State<InfoWarga> {
     try {
       final response = await http.get(
         Uri.parse(
-          "http://10.0.2.2:5000/warga/${currentData['id_warga']}",
+          "${Api.baseUrl}/warga/${currentData['id_warga']}",
         ),
       );
 

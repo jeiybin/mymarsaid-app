@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:iuran_app/api.dart';
 
 import 'drawer_admin.dart';
 import 'data_warga.dart';
@@ -8,7 +9,7 @@ import 'kelola_iuran.dart';
 import 'rekap_page.dart';
 import 'agenda_page.dart';
 import 'pengumuman_page.dart';
-import 'pengaturan_page.dart';
+
 
 import 'package:intl/intl.dart';
 
@@ -32,7 +33,7 @@ class _HomeAdminState extends State<HomeAdmin> {
   Future<void> fetchDashboard() async {
     try {
       final response = await http.get(
-        Uri.parse("http://10.0.2.2:5000/dashboard"),
+        Uri.parse("${Api.baseUrl}/dashboard"),
       );
 
       print("Dashboard Status: ${response.statusCode}");

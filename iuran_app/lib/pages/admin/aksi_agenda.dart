@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:iuran_app/pages/admin/detail_agenda.dart';
 import 'detail_agenda.dart';
+import 'package:iuran_app/api.dart';
 
 class AksiAgendaPage extends StatefulWidget {
   final Map agenda;
@@ -106,7 +107,7 @@ class _AksiAgendaPageState extends State<AksiAgendaPage> {
                   '';
 
               final response = await http.post(
-                  Uri.parse("http://10.0.2.2:5000/edit_transaksi"),
+                  Uri.parse("${Api.baseUrl}/edit_transaksi"),
                   body: {
                     'id': id,
                     'nominal': nominalController.text
@@ -233,7 +234,7 @@ class _AksiAgendaPageState extends State<AksiAgendaPage> {
 
                 if (confirm) {
                   await http.delete(
-                      Uri.parse("http://10.0.2.2:5000/hapus_transaksi/$id"));
+                      Uri.parse("${Api.baseUrl}/hapus_transaksi/$id"));
                   widget.refreshParent();
                   Navigator.pop(context);
                 }

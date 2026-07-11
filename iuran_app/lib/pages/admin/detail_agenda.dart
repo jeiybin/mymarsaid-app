@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:intl/intl.dart';
-
+import 'package:iuran_app/api.dart';
 import 'aksi_agenda.dart';
 
 class DetailAgenda extends StatefulWidget {
@@ -42,8 +42,8 @@ class _DetailAgendaState extends State<DetailAgenda> {
     setState(() => isLoading = true);
     try {
       final respTrx = await http.get(Uri.parse(
-          "http://10.0.2.2:5000/transaksi?id_agenda=${widget.agenda['id_agenda']}"));
-      final respWarga = await http.get(Uri.parse("http://10.0.2.2:5000/warga"));
+          "${Api.baseUrl}/transaksi?id_agenda=${widget.agenda['id_agenda']}"));
+      final respWarga = await http.get(Uri.parse("${Api.baseUrl}/warga"));
 
       if (respTrx.statusCode == 200 && respWarga.statusCode == 200) {
         setState(() {
@@ -475,7 +475,7 @@ class _DetailAgendaState extends State<DetailAgenda> {
                     .replaceAll('.', '')
                     .replaceAll(',', '');
 
-                final url = Uri.parse("http://10.0.2.2:5000/add_transaksi");
+                final url = Uri.parse("${Api.baseUrl}/add_transaksi");
                 await http.post(url, body: {
                   'id_agenda': widget.agenda['id_agenda'].toString(),
                   'id_warga': selectedWargaId?.toString() ?? '',
@@ -523,7 +523,7 @@ class _DetailAgendaState extends State<DetailAgenda> {
             ElevatedButton(
               onPressed: () async {
                 final response = await http.post(
-                  Uri.parse("http://10.0.2.2:5000/edit_agenda"),
+                  Uri.parse("${Api.baseUrl}/edit_agenda"),
                   body: {
                     "id_agenda": widget.agenda['id_agenda'].toString(),
                     "nama": namaController.text.trim(),

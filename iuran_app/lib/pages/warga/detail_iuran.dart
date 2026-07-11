@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:iuran_app/api.dart';
 
 class DetailIuran extends StatefulWidget {
   final int idRumah;
@@ -34,7 +35,7 @@ class _DetailIuranState extends State<DetailIuran> {
     try {
       final response = await http.get(
         Uri.parse(
-          "http://10.0.2.2:5000/detail_iuran/${widget.idRumah}?bulan=${widget.bulan}&tahun=${widget.tahun}",
+          "${Api.baseUrl}/detail_iuran/${widget.idRumah}?bulan=${widget.bulan}&tahun=${widget.tahun}",
         ),
       );
 

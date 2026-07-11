@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-
+import 'package:iuran_app/api.dart';
 import 'edit_pengumuman.dart';
 
 class DetailPengumuman extends StatefulWidget {
@@ -34,7 +34,7 @@ class _DetailPengumumanState extends State<DetailPengumuman> {
     try {
       final response = await http.get(
         Uri.parse(
-          "http://10.0.2.2:5000/pengumuman/${currentData['id']}",
+          "${Api.baseUrl}/pengumuman/${currentData['id']}",
         ),
       );
 
@@ -92,7 +92,7 @@ class _DetailPengumumanState extends State<DetailPengumuman> {
       final response = await http.delete(
 
         Uri.parse(
-          "http://10.0.2.2:5000/hapus_pengumuman/${currentData['id']}",
+          "${Api.baseUrl}/hapus_pengumuman/${currentData['id']}",
         ),
 
       );

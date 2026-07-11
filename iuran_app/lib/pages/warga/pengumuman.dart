@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:iuran_app/api.dart';
 
 import 'detail_pengumuman.dart';
 
@@ -25,7 +26,7 @@ class _PengumumanWargaState extends State<PengumumanWarga> {
   Future<void> fetchPengumuman() async {
     setState(() => isLoading = true);
     try {
-      final response = await http.get(Uri.parse("http://10.0.2.2:5000/pengumuman"));
+      final response = await http.get(Uri.parse("${Api.baseUrl}/pengumuman"));
       if (response.statusCode == 200) {
         setState(() {
           pengumumanList = jsonDecode(response.body);

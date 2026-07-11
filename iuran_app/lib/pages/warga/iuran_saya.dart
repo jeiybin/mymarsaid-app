@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:iuran_app/pages/warga/info_warga.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:iuran_app/api.dart';
 
 import 'drawer_warga.dart';
 import 'detail_iuran.dart';
@@ -82,7 +83,7 @@ class _IuranSayaState
 
         Uri.parse(
 
-          "http://10.0.2.2:5000/iuran_saya/$idWarga?tahun=$selectedYear",
+          "${Api.baseUrl}/iuran_saya/$idWarga?tahun=$selectedYear",
 
         ),
 

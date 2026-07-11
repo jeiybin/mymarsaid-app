@@ -11,6 +11,7 @@ import 'package:http/http.dart' as http;
 import 'agenda.dart';
 import 'daftar_warga.dart';
 import 'drawer_warga.dart';
+import 'package:iuran_app/api.dart';
 
 String nama = "";
 String noRumah = "";
@@ -40,7 +41,7 @@ class _HomeWargaState extends State<HomeWarga> {
 
     final response = await http.get(
       Uri.parse(
-        "http://10.0.2.2:5000/warga/$id",
+        "${Api.baseUrl}/warga/$id",
       ),
     );
 
@@ -58,7 +59,7 @@ class _HomeWargaState extends State<HomeWarga> {
     try {
       final pengumumanRes = await http.get(
         Uri.parse(
-          "http://10.0.2.2:5000/pengumuman-terbaru",
+          "${Api.baseUrl}/pengumuman-terbaru",
         ),
       );
 

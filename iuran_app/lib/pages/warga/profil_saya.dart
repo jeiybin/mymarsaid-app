@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:iuran_app/api.dart';
 import 'home_warga.dart';
 
 class ProfilWarga extends StatefulWidget {
@@ -43,7 +44,7 @@ class ProfilSaya extends State<ProfilWarga> {
     try {
       final response = await http.get(
         Uri.parse(
-          "http://10.0.2.2:5000/warga/$idWarga",
+          "${Api.baseUrl}/warga/$idWarga",
         ),
       );
 
@@ -80,7 +81,7 @@ class ProfilSaya extends State<ProfilWarga> {
     try {
       final response = await http.put(
         Uri.parse(
-          "http://10.0.2.2:5000/edit_profil_warga/$idWarga",
+          "${Api.baseUrl}/edit_profil_warga/$idWarga",
         ),
         headers: {
           "Content-Type": "application/json",

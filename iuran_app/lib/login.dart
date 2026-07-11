@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:firebase_messaging/firebase_messaging.dart';
-
+import 'package:iuran_app/api.dart';
 import 'pages/warga/home_warga.dart';
 import 'pages/admin/home_admin.dart';
 
@@ -25,7 +25,7 @@ class _LoginPageState extends State<LoginPage> {
         isLoading = true;
       });
 
-      final url = Uri.parse("http://10.0.2.2:5000/login");
+      final url = Uri.parse("${Api.baseUrl}/login");
 
       final response = await http.post(
         url,
@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
         // =========================
 
         final responseToken = await http.post(
-          Uri.parse("http://10.0.2.2:5000/save_fcm_token"),
+          Uri.parse("${Api.baseUrl}/save_fcm_token"),
           headers: {
             "Content-Type": "application/json",
           },

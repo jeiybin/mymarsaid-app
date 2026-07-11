@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-
+import 'package:iuran_app/api.dart';
 import 'detail_pengumuman.dart';
 
 class PengumumanPage extends StatefulWidget {
@@ -24,7 +24,7 @@ class _PengumumanPageState extends State<PengumumanPage> {
     setState(() => isLoading = true);
     try {
       final response =
-          await http.get(Uri.parse("http://10.0.2.2:5000/pengumuman"));
+          await http.get(Uri.parse("${Api.baseUrl}/pengumuman"));
       if (response.statusCode == 200) {
         setState(() {
           pengumumanList = jsonDecode(response.body);
@@ -134,7 +134,7 @@ class _PengumumanPageState extends State<PengumumanPage> {
               child: const Text("Batal")),
           ElevatedButton(
             onPressed: () async {
-              final url = Uri.parse("http://10.0.2.2:5000/add_pengumuman");
+              final url = Uri.parse("${Api.baseUrl}/add_pengumuman");
 
               // Mengirim format tanggal yang bersih sejak awal
               String formattedTgl =

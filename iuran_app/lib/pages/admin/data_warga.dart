@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'drawer_admin.dart';
 import 'detail_warga.dart';
 import 'add_warga.dart';
+import 'package:iuran_app/api.dart';
 
 
 class DataWarga extends StatefulWidget {
@@ -25,7 +26,7 @@ class _DataWargaState extends State<DataWarga> {
 
   Future<void> fetchWarga() async {
     try {
-      final response = await http.get(Uri.parse("http://10.0.2.2:5000/warga"));
+      final response = await http.get(Uri.parse("${Api.baseUrl}/warga"));
       final data = jsonDecode(response.body);
       setState(() {
         warga = data;

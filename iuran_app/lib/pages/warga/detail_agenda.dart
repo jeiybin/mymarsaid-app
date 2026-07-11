@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-
+import 'package:iuran_app/api.dart';
 
 
 class DetailAgenda extends StatefulWidget {
@@ -41,8 +41,8 @@ class _DetailAgendaState extends State<DetailAgenda> {
     setState(() => isLoading = true);
     try {
       final respTrx = await http.get(Uri.parse(
-          "http://10.0.2.2:5000/transaksi?id_agenda=${widget.agenda['id_agenda']}"));
-      final respWarga = await http.get(Uri.parse("http://10.0.2.2:5000/warga"));
+          "${Api.baseUrl}/transaksi?id_agenda=${widget.agenda['id_agenda']}"));
+      final respWarga = await http.get(Uri.parse("${Api.baseUrl}/warga"));
 
       if (respTrx.statusCode == 200 && respWarga.statusCode == 200) {
         setState(() {

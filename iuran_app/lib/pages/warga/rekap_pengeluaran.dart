@@ -1,8 +1,8 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:iuran_app/api.dart';
 
 class RekapPengeluaran extends StatefulWidget {
   final String bulan;
@@ -34,7 +34,7 @@ class _RekapPengeluaranState extends State<RekapPengeluaran> {
     try {
       final response = await http.get(
         Uri.parse(
-          "http://10.0.2.2:5000/detail_pengeluaran?bulan=${widget.bulan}&tahun=${widget.tahun}",
+          "${Api.baseUrl}/detail_pengeluaran?bulan=${widget.bulan}&tahun=${widget.tahun}",
         ),
       );
 

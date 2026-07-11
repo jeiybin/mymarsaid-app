@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+
 class DetailPengumumanWarga extends StatelessWidget {
   final Map pengumuman;
 

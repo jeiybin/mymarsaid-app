@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:iuran_app/api.dart';
 import 'detail_agenda.dart';
 import 'drawer_warga.dart';
 
@@ -69,7 +70,7 @@ class _AgendaState extends State<Agenda> {
     setState(() => isLoading = true);
     try {
       final response = await http
-          .get(Uri.parse("http://10.0.2.2:5000/agenda?tahun=$selectedYear"));
+          .get(Uri.parse("${Api.baseUrl}/agenda?tahun=$selectedYear"));
       if (response.statusCode == 200) {
         setState(() {
           agendaList = jsonDecode(response.body);
@@ -131,7 +132,7 @@ class _AgendaState extends State<Agenda> {
                 onPressed: () => Navigator.pop(context), child: Text("Batal")),
             ElevatedButton(
               onPressed: () async {
-                await http.post(Uri.parse("http://10.0.2.2:5000/add_agenda"),
+                await http.post(Uri.parse("${Api.baseUrl}/add_agenda"),
                     headers: {"Content-Type": "application/json"},
                     body: jsonEncode({
                       "nama": namaController.text,

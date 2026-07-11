@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'dart:convert';
+import 'package:iuran_app/api.dart';
 
 class AksiPengeluaranPage extends StatefulWidget {
   final Map item;
@@ -205,7 +206,7 @@ class _AksiPengeluaranPageState
                         await http
                             .post(
                       Uri.parse(
-                        "http://10.0.2.2:5000/edit_pengeluaran/$currentId",
+                        "${Api.baseUrl}/edit_pengeluaran/$currentId",
                       ),
                       headers: {
                         "Content-Type":
@@ -482,7 +483,7 @@ class _AksiPengeluaranPageState
                       await http
                           .delete(
                     Uri.parse(
-                      "http://10.0.2.2:5000/hapus_pengeluaran/$currentId",
+                      "${Api.baseUrl}/hapus_pengeluaran/$currentId",
                     ),
                   );
 

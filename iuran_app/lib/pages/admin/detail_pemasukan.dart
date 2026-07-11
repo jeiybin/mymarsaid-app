@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-
+import 'package:iuran_app/api.dart';
 import 'aksi_pemasukan.dart';
 
 class DetailPemasukanPage extends StatefulWidget {
@@ -37,7 +37,7 @@ class _DetailPemasukanPageState extends State<DetailPemasukanPage> {
     try {
       final response = await http.get(
         Uri.parse(
-          "http://10.0.2.2:5000/detail_pemasukan?bulan=${widget.bulan}&tahun=${widget.tahun}",
+          "${Api.baseUrl}/detail_pemasukan?bulan=${widget.bulan}&tahun=${widget.tahun}",
         ),
       );
 
@@ -132,7 +132,7 @@ class _DetailPemasukanPageState extends State<DetailPemasukanPage> {
                   onPressed: () async {
                     try {
                       await http.post(
-                        Uri.parse("http://10.0.2.2:5000/add_pemasukan"),
+                        Uri.parse("${Api.baseUrl}/add_pemasukan"),
                         headers: {"Content-Type": "application/json"},
                         body: jsonEncode({
                           "tanggal": DateFormat('yyyy-MM-dd').format(selectedDate),

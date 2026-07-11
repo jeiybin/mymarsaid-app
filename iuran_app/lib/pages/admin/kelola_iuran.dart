@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
+import 'package:iuran_app/api.dart';
 import 'detail_iuran.dart';
 import 'drawer_admin.dart';
 
@@ -91,7 +91,7 @@ class _KelolaIuranState
 
         Uri.parse(
 
-          "http://10.0.2.2:5000/kelola_iuran"
+          "${Api.baseUrl}/kelola_iuran"
           "?bulan=$selectedMonth"
           "&tahun=$selectedYear"
           "&status=$selectedStatus",

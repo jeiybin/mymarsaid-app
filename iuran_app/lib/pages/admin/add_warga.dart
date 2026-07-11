@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'drawer_admin.dart';
+import 'package:iuran_app/api.dart';
 
 class TambahWarga extends StatefulWidget {
 
@@ -41,7 +42,7 @@ class _TambahWargaState
       final response = await http.post(
 
         Uri.parse(
-          "http://10.0.2.2:5000/add_warga",
+          "${Api.baseUrl}/add_warga",
         ),
 
         headers: {

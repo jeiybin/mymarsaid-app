@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:iuran_app/api.dart';
 
 import 'rekap_pemasukan.dart';
 import 'rekap_pengeluaran.dart';
@@ -64,7 +65,7 @@ class _RekapBulananState extends State<RekapBulanan> {
     try {
       final response = await http.get(
         Uri.parse(
-          "http://10.0.2.2:5000/rekap?bulan=$selectedMonth&tahun=$selectedYear",
+          "${Api.baseUrl}/rekap?bulan=$selectedMonth&tahun=$selectedYear",
         ),
       );
 
@@ -89,7 +90,7 @@ class _RekapBulananState extends State<RekapBulanan> {
     try {
       final response = await http.get(
         Uri.parse(
-          "http://10.0.2.2:5000/grafik_rekap"
+          "${Api.baseUrl}/grafik_rekap"
           "?tahun=$selectedYear",
         )
       );

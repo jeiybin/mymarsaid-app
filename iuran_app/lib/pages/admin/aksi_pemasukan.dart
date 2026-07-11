@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'dart:convert';
+import 'package:iuran_app/api.dart';
 
 class AksiPemasukanPage extends StatefulWidget {
   final Map item;
@@ -54,7 +55,7 @@ class _AksiPemasukanPageState extends State<AksiPemasukanPage> {
               onPressed: () async {
                 Navigator.pop(context);
                 await http.post(
-                  Uri.parse("http://10.0.2.2:5000/edit_pemasukan/${data['id']}"),
+                  Uri.parse("${Api.baseUrl}/edit_pemasukan/${data['id']}"),
                   headers: {"Content-Type": "application/json"},
                   body: jsonEncode({
                     "tanggal": "${selectedDate.year}-${selectedDate.month.toString().padLeft(2, '0')}-${selectedDate.day.toString().padLeft(2, '0')}",
@@ -147,7 +148,7 @@ class _AksiPemasukanPageState extends State<AksiPemasukanPage> {
                   ),
                 );
                 if (confirm == true) {
-                  await http.delete(Uri.parse("http://10.0.2.2:5000/hapus_pemasukan/${widget.item['id']}"));
+                  await http.delete(Uri.parse("${Api.baseUrl}/hapus_pemasukan/${widget.item['id']}"));
                   widget.refreshParent();
                   Navigator.pop(context);
                 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'edit_warga.dart';
-
+import 'package:iuran_app/api.dart';
 class DetailWargaPage extends StatefulWidget {
   final Map data;
   final Function refreshParent; 
@@ -25,7 +25,7 @@ class _DetailWargaPageState extends State<DetailWargaPage> {
     try {
       final response = await http.get(
         Uri.parse(
-          "http://10.0.2.2:5000/warga/${currentData['id_warga']}",
+          "${Api.baseUrl}/warga/${currentData['id_warga']}",
         ),
       );
 
@@ -129,7 +129,7 @@ class _DetailWargaPageState extends State<DetailWargaPage> {
                       if (confirm == true) {
                         try {
                           final response = await http.delete(
-                            Uri.parse("http://10.0.2.2:5000/hapus_warga/${currentData['id_warga']}")
+                            Uri.parse("${Api.baseUrl}/hapus_warga/${currentData['id_warga']}")
                           );
 
                           if (response.statusCode == 200) {

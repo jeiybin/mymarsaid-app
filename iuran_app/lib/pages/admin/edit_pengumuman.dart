@@ -1,8 +1,7 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:iuran_app/api.dart';
 class EditPengumuman extends StatefulWidget {
 
   final Map pengumuman;
@@ -72,7 +71,7 @@ class _EditPengumumanPageState
       final response = await http.put(
 
         Uri.parse(
-          "http://10.0.2.2:5000/edit_pengumuman/${widget.pengumuman["id"]}",
+          "${Api.baseUrl}/edit_pengumuman/${widget.pengumuman["id"]}",
         ),
 
         headers: {

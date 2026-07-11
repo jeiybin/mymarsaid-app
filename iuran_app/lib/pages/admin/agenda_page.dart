@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'detail_agenda.dart';
 import 'drawer_admin.dart';
+import 'package:iuran_app/api.dart';
 
 class AgendaPage extends StatefulWidget {
   @override
@@ -35,7 +36,7 @@ class _AgendaPageState extends State<AgendaPage> {
             onPressed: () async {
               final response = await http.post(
                 Uri.parse(
-                  "http://10.0.2.2:5000/hapus_agenda",
+                  "${Api.baseUrl}/hapus_agenda",
                 ),
                 body: {
                   "id_agenda": agenda['id_agenda'].toString(),
@@ -131,7 +132,7 @@ class _AgendaPageState extends State<AgendaPage> {
     try {
       final response = await http.get(
         Uri.parse(
-          "http://10.0.2.2:5000/agenda?tahun=$selectedYear",
+          "${Api.baseUrl}/agenda?tahun=$selectedYear",
         ),
       );
 
@@ -218,7 +219,7 @@ class _AgendaPageState extends State<AgendaPage> {
             ElevatedButton(
               onPressed: () async {
                 await http.post(
-                  Uri.parse("http://10.0.2.2:5000/add_agenda"),
+                  Uri.parse("${Api.baseUrl}/add_agenda"),
                   headers: {
                     "Content-Type": "application/json",
                   },
