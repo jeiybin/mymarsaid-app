@@ -33,10 +33,14 @@ db = mysql.connector.connect(
 # =========================
 # FIREBASE
 # =========================
+import os
 
-cred = credentials.Certificate(
-    "firebase/serviceAccountKey.json"
+firebase_key = os.getenv(
+    "FIREBASE_KEY_PATH",
+    "/etc/secrets/serviceAccountKey.json"
 )
+
+cred = credentials.Certificate(firebase_key)
 
 firebase_admin.initialize_app(cred)
 
