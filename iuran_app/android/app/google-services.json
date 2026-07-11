@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "968805889546",
+    "project_id": "iuran-app-de7f9",
+    "storage_bucket": "iuran-app-de7f9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968805889546:android:fb239d2c8c8f3d33eb11f3",
+        "android_client_info": {
+          "package_name": "com.example.iuran_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwQ5qtlP-fhs0kx9B0bfFQ3mrj-QcBJHY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
