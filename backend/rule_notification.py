@@ -78,7 +78,7 @@ def hitung_telat(cursor, id_rumah):
 # ======================
 def cek_jadwal(kategori):
 
-    hari = datetime.now().day
+    hari = 23
 
     jatuh_tempo = 24
 
@@ -169,4 +169,4 @@ def sudah_lunas(cursor, id_rumah):
 # ======================
 def cek_awal_bulan():
 
-    return True
+    return datetime.now().day == 1
