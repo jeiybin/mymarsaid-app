@@ -139,7 +139,7 @@ class _DetailAgendaState extends State<DetailAgenda> {
                 child: Text(
                   widget.agenda['nama'] ?? 'Detail Agenda',
                   overflow: TextOverflow
-                      .ellipsis, // Mencegah teks terlalu panjang menabrak icon
+                      .ellipsis,  
                 ),
               ),
               IconButton(
@@ -169,7 +169,7 @@ class _DetailAgendaState extends State<DetailAgenda> {
                     ),
                   ),
 
-                  // --- BAGIAN TENGAH: TAB BAR ---
+                  // Bagian Tengah
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 16.0, vertical: 8.0),
@@ -199,7 +199,7 @@ class _DetailAgendaState extends State<DetailAgenda> {
                     ),
                   ),
 
-                  // --- BAGIAN BAWAH: LIST DATA ---
+                  // Bagian Bawah
                   Expanded(
                     child: TabBarView(
                       children: [
@@ -219,7 +219,6 @@ class _DetailAgendaState extends State<DetailAgenda> {
   }
 
   Widget buildList(String jenis) {
-    // 1. Tentukan list kategori
     List<String> listKategori = ['Semua'];
     if (jenis == 'masuk') {
       listKategori.addAll(kategoriMasuk);
@@ -238,7 +237,6 @@ class _DetailAgendaState extends State<DetailAgenda> {
 
     return Column(
       children: [
-        // --- BARIS DROPDOWN FILTER ---
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           child: Container(
@@ -274,7 +272,7 @@ class _DetailAgendaState extends State<DetailAgenda> {
           ),
         ),
 
-        // --- DAFTAR TRANSAKSI ---
+        // Daftar Transaksi
         Expanded(
           child: filteredData.isEmpty
               ? Center(child: Text("Belum ada data $filterAktif"))
@@ -343,7 +341,6 @@ class _DetailAgendaState extends State<DetailAgenda> {
     );
   }
 
-  // MENU BAWAH SAAT CARD DIKLIK
   void pilihAksiAgenda(Map item) {
     Navigator.push(
       context,
@@ -429,7 +426,6 @@ class _DetailAgendaState extends State<DetailAgenda> {
                   onChanged: (v) => setModal(() => selectedKategori = v!),
                 ),
 
-                // DATE PICKER FIELD
                 TextFormField(
                   controller: tglController,
                   readOnly: true,
@@ -483,7 +479,7 @@ class _DetailAgendaState extends State<DetailAgenda> {
                   'kategori': selectedKategori,
                   'nominal': nominalBersih,
                   'ket': ketController.text,
-                  'tgl': tglController.text, // MENGIRIM TANGGAL KE FLASK
+                  'tgl': tglController.text, 
                 });
                 Navigator.pop(context);
                 fetchData();

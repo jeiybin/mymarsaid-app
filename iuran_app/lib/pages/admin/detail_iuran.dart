@@ -26,22 +26,12 @@ class DetailIuran extends StatefulWidget {
       _DetailIuranState();
 }
 
-
-// ==============================
-// STATE
-// ==============================
-
 class _DetailIuranState
     extends State<DetailIuran> {
 
   Map iuran = {};
 
   bool isLoading = true;
-
-
-  // ==============================
-  // INIT
-  // ==============================
 
   @override
   void initState() {
@@ -50,11 +40,6 @@ class _DetailIuranState
 
     fetchDetailIuran();
   }
-
-
-  // ==============================
-  // FETCH DETAIL IURAN
-  // ==============================
 
   Future<void> fetchDetailIuran() async {
 
@@ -75,10 +60,8 @@ class _DetailIuranState
         ),
       );
 
-      // Di dalam fetchDetailIuran
       final data = jsonDecode(response.body);
       setState(() {
-        // Pastikan iuran selalu berupa Map, tidak null
         iuran = data ?? {}; 
         isLoading = false;
       });
@@ -92,11 +75,6 @@ class _DetailIuranState
       });
     }
   }
-
-
-  // ==============================
-  // EDIT IURAN DIALOG
-  // ==============================
 
   void editIuranDialog() {
     final iuranController =
@@ -244,12 +222,8 @@ class _DetailIuranState
               ),
 
               actions: [
-
-                // BATAL
                 TextButton(
-
                   onPressed: () {
-
                     Navigator.pop(
                         context);
                   },
@@ -259,9 +233,7 @@ class _DetailIuranState
 
                 // SIMPAN
                 ElevatedButton(
-
                   onPressed: () async {
-
                     try {
 
                       final response =

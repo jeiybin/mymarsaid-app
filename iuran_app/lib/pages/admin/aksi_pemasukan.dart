@@ -15,7 +15,6 @@ class AksiPemasukanPage extends StatefulWidget {
 }
 
 class _AksiPemasukanPageState extends State<AksiPemasukanPage> {
-  // Salin fungsi dialogFormPemasukan ke sini agar bisa diakses
   void dialogFormPemasukan(Map data) {
     final jenisController = TextEditingController(text: data['jenis']);
     final nominalController = TextEditingController(text: data['nominal'].toString());
@@ -98,14 +97,13 @@ class _AksiPemasukanPageState extends State<AksiPemasukanPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Informasi Baris (Kategori/Jenis, Keterangan, Tanggal)
                     _buildInfoRow(Icons.label_outline, "Jenis", widget.item['jenis'] ?? '-'),
                     _buildInfoRow(Icons.description_outlined, "Keterangan", widget.item['keterangan'] ?? '-'),
                     _buildInfoRow(Icons.calendar_today, "Tanggal", widget.item['tanggal'] ?? '-'),
                     
                     const Divider(height: 30, thickness: 1),
                     
-                    // Bagian Nominal
+                    //Nominal
                     const Text("Nominal", style: TextStyle(fontSize: 14, color: Colors.grey)),
                     const SizedBox(height: 8),
                     Text(
@@ -113,7 +111,7 @@ class _AksiPemasukanPageState extends State<AksiPemasukanPage> {
                       style: const TextStyle(
                         fontSize: 28, 
                         fontWeight: FontWeight.bold, 
-                        color: Colors.green // Hijau untuk pemasukan
+                        color: Colors.green 
                       ),
                     ),
                   ],
@@ -135,7 +133,6 @@ class _AksiPemasukanPageState extends State<AksiPemasukanPage> {
               icon: const Icon(Icons.delete, color: Colors.white),
               label: const Text("Hapus Data", style: TextStyle(color: Colors.white)),
               onPressed: () async {
-                // Logika hapus yang sudah Anda buat
                 bool confirm = await showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
@@ -164,7 +161,6 @@ class _AksiPemasukanPageState extends State<AksiPemasukanPage> {
     );
   }
 
-  // Tambahkan helper ini di kelas _AksiPemasukanPageState Anda
   Widget _buildInfoRow(IconData icon, String label, String value) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),

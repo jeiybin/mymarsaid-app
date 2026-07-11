@@ -16,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController username = TextEditingController();
   final TextEditingController password = TextEditingController();
 
-  bool isLoading = false; // 🔥 untuk loading
+  bool isLoading = false; 
 
   // FUNGSI LOGIN
   Future<void> loginUser() async {
