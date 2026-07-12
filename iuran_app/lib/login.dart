@@ -16,7 +16,8 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController username = TextEditingController();
   final TextEditingController password = TextEditingController();
 
-  bool isLoading = false; 
+  bool isLoading = false;
+  bool isPasswordHidden = true; 
 
   // FUNGSI LOGIN
   Future<void> loginUser() async {
@@ -181,10 +182,22 @@ class _LoginPageState extends State<LoginPage> {
               // PASSWORD
               TextField(
                 controller: password,
-                obscureText: true,
+                obscureText: isPasswordHidden,
                 decoration: InputDecoration(
                   labelText: "Password",
                   border: OutlineInputBorder(),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      isPasswordHidden
+                          ? Icons.visibility_off
+                          : Icons.visibility,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        isPasswordHidden = !isPasswordHidden;
+                      });
+                    },
+                  ),
                 ),
               ),
 
