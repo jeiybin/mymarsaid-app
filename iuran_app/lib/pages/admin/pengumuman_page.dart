@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:iuran_app/api.dart';
 import 'detail_pengumuman.dart';
+import 'tambah_pengumuman.dart';
 
 class PengumumanPage extends StatefulWidget {
   @override
@@ -102,56 +103,18 @@ class _PengumumanPageState extends State<PengumumanPage> {
                   },
                 ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => showDialogTambahPengumuman(),
+        onPressed: () async {
+          final result = await Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const TambahPengumumanPage(),
+            ),
+          );
+          if (result == true) {
+            fetchPengumuman();
+          }
+        },
         child: const Icon(Icons.add),
-      ),
-    );
-  }
-
-  void showDialogTambahPengumuman() {
-    final judulController = TextEditingController();
-    final isiController = TextEditingController();
-
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text("Tambah Pengumuman"),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextField(
-                controller: judulController,
-                decoration: const InputDecoration(labelText: "Judul")),
-            TextField(
-                controller: isiController,
-                decoration: const InputDecoration(labelText: "Isi Pengumuman"),
-                maxLines: 5),
-          ],
-        ),
-        actions: [
-          TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text("Batal")),
-          ElevatedButton(
-            onPressed: () async {
-              final url = Uri.parse("${Api.baseUrl}/add_pengumuman");
-
-              // Mengirim format tanggal yang bersih sejak awal
-              String formattedTgl =
-                  DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.now());
-
-              await http.post(url, body: {
-                'judul': judulController.text,
-                'isi': isiController.text,
-                'tgl': formattedTgl,
-              });
-
-              Navigator.pop(context);
-              fetchPengumuman();
-            },
-            child: const Text("Simpan"),
-          ),
-        ],
       ),
     );
   }

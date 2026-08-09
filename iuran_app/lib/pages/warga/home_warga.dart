@@ -204,7 +204,7 @@ class _HomeWargaState extends State<HomeWarga> {
                         // IURAN SAYA
                         menuItem(
                           context,
-                          Icons.attach_money,
+                          Icons.payment,
                           "Iuran Saya",
                           () {
                             Navigator.push(

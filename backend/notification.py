@@ -1,11 +1,7 @@
 from firebase_admin import messaging
-from flask import current_app
-
 
 def send_notification(db, id_user, title, body):
-
     cursor = db.cursor(dictionary=True)
-
     cursor.execute("""
         SELECT fcm_token
         FROM users
@@ -13,13 +9,10 @@ def send_notification(db, id_user, title, body):
     """, (id_user,))
 
     user = cursor.fetchone()
-
     if not user:
         return False
-
     if not user["fcm_token"]:
         return False
-
     message = messaging.Message(
         notification=messaging.Notification(
             title=title,
@@ -27,7 +20,6 @@ def send_notification(db, id_user, title, body):
         ),
         token=user["fcm_token"],
     )
-
     try:
         messaging.send(message)
         return True

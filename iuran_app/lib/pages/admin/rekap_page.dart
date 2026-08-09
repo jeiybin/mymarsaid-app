@@ -4,7 +4,6 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-import 'drawer_admin.dart';
 import 'detail_pemasukan.dart';
 import 'detail_pengeluaran.dart';
 import 'package:iuran_app/api.dart';
@@ -333,7 +332,6 @@ class _RekapPageState extends State<RekapPage> {
     BuildContext context,
   ) {
     return Scaffold(
-      drawer: AppDrawer(),
       appBar: AppBar(
         title: Text(
           "Rekap Keuangan",

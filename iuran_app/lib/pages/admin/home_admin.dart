@@ -65,23 +65,8 @@ class _HomeAdminState extends State<HomeAdmin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // DRAWER
       drawer: AppDrawer(),
-
-      // APPBAR
       appBar: AppBar(
-        leading: Builder(
-          builder: (context) {
-            return IconButton(
-              icon: Icon(
-                Icons.segment_rounded,
-              ),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-            );
-          },
-        ),
         title: Text("MyMarsaid"),
       ),
 

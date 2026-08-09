@@ -52,7 +52,6 @@ class _AgendaState extends State<Agenda> {
     return strDate;
   }
 
-// Tambahkan fungsi pembantu ini untuk mengubah nama bulan ke angka
   String convertMonthToNumber(String month) {
     switch (month.toLowerCase()) {
       case 'jan':
@@ -155,16 +154,8 @@ class _AgendaState extends State<Agenda> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: AppDrawer(),
       appBar: AppBar(
         title: Text("Agenda Warga"),
-        //HAMBURGER:
-        leading: Builder(
-          builder: (context) => IconButton(
-            icon: Icon(Icons.menu), 
-            onPressed: () => Scaffold.of(context).openDrawer(),
-          ),
-        ),
       ),
       body: isLoading
           ? Center(child: CircularProgressIndicator())

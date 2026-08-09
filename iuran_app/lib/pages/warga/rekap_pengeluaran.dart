@@ -64,7 +64,7 @@ class _RekapPengeluaranState extends State<RekapPengeluaran> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Rekap Pengeluaran"),
+        title: const Text("Daftar Pengeluaran"),
       ),
       body: isLoading
           ? const Center(
@@ -89,17 +89,6 @@ class _RekapPengeluaranState extends State<RekapPengeluaran> {
                         padding: const EdgeInsets.all(18),
                         child: Row(
                           children: [
-                            CircleAvatar(
-                              radius: 26,
-                              backgroundColor:
-                                  Colors.red.withOpacity(0.15),
-                              child: const Icon(
-                                Icons.trending_down,
-                                color: Colors.red,
-                              ),
-                            ),
-                            const SizedBox(width: 16),
-
                             Expanded(
                               child: Column(
                                 crossAxisAlignment:

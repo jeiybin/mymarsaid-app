@@ -192,7 +192,7 @@ class _DetailIuranState extends State<DetailIuran> {
                           ),
                           const Divider(height: 30),
                           buildItem(
-                            "Iuran",
+                            "Iuran Wajib",
                             rupiah(data["iuran"]),
                           ),
                           buildItem(

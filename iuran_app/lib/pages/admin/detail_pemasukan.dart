@@ -171,7 +171,7 @@ class _DetailPemasukanPageState extends State<DetailPemasukanPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Detail Pemasukan"),
+        title: Text("Daftar Pemasukan"),
       ),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())

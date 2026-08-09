@@ -88,13 +88,10 @@ class _DetailPengeluaranPageState extends State<DetailPengeluaranPage> {
                     ),
                     const SizedBox(height: 12),
                     ListTile(
-                      contentPadding:
-                          EdgeInsets.zero,
-
+                      contentPadding: EdgeInsets.zero,
                       leading: const Icon(
                         Icons.calendar_month,
                       ),
-
                       title: Text(
                         DateFormat(
                           'dd MMMM yyyy',
@@ -103,31 +100,17 @@ class _DetailPengeluaranPageState extends State<DetailPengeluaranPage> {
                           selectedDate,
                         ),
                       ),
-
                       onTap: () async {
-
-                        final picked =
-                            await showDatePicker(
-
+                        final picked = await showDatePicker(
                           context: context,
-
-                          initialDate:
-                              selectedDate,
-
-                          firstDate:
-                              DateTime(2020),
-
-                          lastDate:
-                              DateTime(2100),
+                          initialDate: selectedDate,
+                          firstDate: DateTime(2020),
+                          lastDate: DateTime(2100),
                         );
 
                         if (picked != null) {
-
                           setModalState(() {
-
-                            selectedDate =
-                                picked;
-
+                            selectedDate = picked;
                           });
                         }
                       },
@@ -196,7 +179,7 @@ class _DetailPengeluaranPageState extends State<DetailPengeluaranPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Pengeluaran"),
+        title: Text("Daftar Pengeluaran"),
       ),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
@@ -234,18 +217,13 @@ class _DetailPengeluaranPageState extends State<DetailPengeluaranPage> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-
                         subtitle: Column(
-                          crossAxisAlignment:
-                              CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-
                             Text(
                               item['keterangan'] ?? '',
                             ),
-
                             SizedBox(height: 4),
-
                             Text(
                               item['tanggal'] ?? '-',
                               style: TextStyle(
@@ -255,15 +233,13 @@ class _DetailPengeluaranPageState extends State<DetailPengeluaranPage> {
                             ),
                           ],
                         ),
-
                         trailing: Text(
                           formatRupiah(
                             item['nominal'],
                           ),
                           style: TextStyle(
                             color: Colors.red,
-                            fontWeight:
-                                FontWeight.bold,
+                            fontWeight: FontWeight.bold,
                             fontSize: 16,
                           ),
                         ),

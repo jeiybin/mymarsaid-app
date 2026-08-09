@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'detail_agenda.dart';
-import 'drawer_admin.dart';
 import 'package:iuran_app/api.dart';
 
 class AgendaPage extends StatefulWidget {
@@ -246,15 +245,8 @@ class _AgendaPageState extends State<AgendaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: AppDrawer(),
       appBar: AppBar(
         title: const Text("Agenda Warga"),
-        leading: Builder(
-          builder: (context) => IconButton(
-            icon: const Icon(Icons.menu),
-            onPressed: () => Scaffold.of(context).openDrawer(),
-          ),
-        ),
       ),
       body: isLoading
           ? const Center(

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'drawer_admin.dart';
 import 'detail_warga.dart';
-import 'add_warga.dart';
+import 'tambah_warga.dart';
 import 'package:iuran_app/api.dart';
 
 
@@ -51,7 +50,6 @@ class _DataWargaState extends State<DataWarga> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Data Warga")),
-      drawer: AppDrawer(),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => TambahWarga())).then((_) => fetchWarga()),

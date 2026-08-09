@@ -64,7 +64,6 @@ class _DetailWargaPageState extends State<DetailWargaPage> {
               ),
             ),
             SizedBox(height: 16),
-            // PENTING: Gunakan currentData['nama'] agar nama berubah setelah edit
             Text(currentData['nama'] ?? '-', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
             SizedBox(height: 24),
             Card(
@@ -73,11 +72,8 @@ class _DetailWargaPageState extends State<DetailWargaPage> {
               child: Column(
                 children: [
                   _buildListTile(Icons.home, "Nomor Rumah", currentData['no_rumah'] ?? '-'),
-                  Divider(),
                   _buildListTile(Icons.landscape, "Luas Tanah", "${currentData['luas_tanah'] ?? '-'} m²"),
-                  Divider(),
                   _buildListTile(Icons.phone, "Nomor HP", currentData['no_hp'] ?? '-'),
-                  Divider(),
                   _buildListTile(Icons.info, "Status", (currentData['status'] ?? 'aktif').toUpperCase()),
                 ],
               ),

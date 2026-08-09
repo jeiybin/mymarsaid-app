@@ -13,11 +13,8 @@ class DetailIuran extends StatefulWidget {
   final String selectedYear;
 
   DetailIuran({
-
     required this.data,
-
     required this.selectedMonth,
-
     required this.selectedYear,
   });
 
@@ -235,70 +232,53 @@ class _DetailIuranState
                 ElevatedButton(
                   onPressed: () async {
                     try {
-
                       final response =
                           await http.post(
 
                         Uri.parse(
-
                           "${Api.baseUrl}/update_iuran",
                         ),
 
                         headers: {
-
                           "Content-Type":
                               "application/json",
                         },
 
                         body: jsonEncode({
-
                           "id_rumah":
-
                               widget.data[
                                   'id_rumah'],
 
                           "bulan":
-
                               widget
                                   .selectedMonth,
 
                           "tahun":
-
                               int.parse(
-
                                 widget
                                     .selectedYear,
                               ),
 
                           "kas":
-
                               int.parse(
-
                                 kasController.text,
                               ),
 
                           "kas_ibu":
-
                               int.parse(
-
                                 kasIbuController
                                     .text,
                               ),
 
                           "beras":
-
                               int.parse(
-
                                 berasController
                                     .text,
                               ),
 
                           "tanggal_bayar":
-
                               "${selectedDate.year}-"
-
                               "${selectedDate.month.toString().padLeft(2, '0')}-"
-
                               "${selectedDate.day.toString().padLeft(2, '0')}",
                         }),
                       );
@@ -337,10 +317,6 @@ class _DetailIuranState
   }
 
 
-  // ==============================
-  // UI
-  // ==============================
-
   @override
   Widget build(BuildContext context) {
 
@@ -369,10 +345,6 @@ class _DetailIuranState
 
                 children: [
 
-                  // ==============================
-                  // PROFILE CARD
-                  // ==============================
-
                   Card(
 
                     child: Padding(
@@ -393,9 +365,7 @@ class _DetailIuranState
                             widget.data['nama'],
 
                             style: TextStyle(
-
                               fontSize: 24,
-
                               fontWeight:
                                   FontWeight.bold,
                             ),
@@ -412,11 +382,6 @@ class _DetailIuranState
                   ),
 
                   SizedBox(height: 20),
-
-
-                  // ==============================
-                  // FILTER INFO
-                  // ==============================
 
                   Container(
 
@@ -441,9 +406,7 @@ class _DetailIuranState
                     ),
 
                     child: Row(
-
                       children: [
-
                         Icon(
                           Icons.calendar_month,
                         ),
@@ -451,14 +414,10 @@ class _DetailIuranState
                         SizedBox(width: 10),
 
                         Text(
-
                           "${widget.selectedMonth} ${widget.selectedYear}",
-
                           style: TextStyle(
-
                             fontWeight:
                                 FontWeight.bold,
-
                             fontSize: 16,
                           ),
                         ),
@@ -468,20 +427,11 @@ class _DetailIuranState
 
                   SizedBox(height: 20),
 
-
-                  // ==============================
-                  // DETAIL CARD
-                  // ==============================
-
                   Card(
-
                     child: Padding(
-
                       padding:
                           EdgeInsets.all(18),
-
                       child: Column(
-
                         children: [
                           detailItem(
                             "Iuran Wajib",
@@ -523,10 +473,8 @@ class _DetailIuranState
                   SizedBox(height: 20),
 
 
-                  // ==============================
-                  // BUTTON EDIT
-                  // ==============================
 
+                  // tombol edit
                   SizedBox(
 
                     width: double.infinity,
@@ -554,36 +502,22 @@ class _DetailIuranState
     );
   }
 
-
-  // ==============================
-  // DETAIL ITEM
-  // ==============================
-
   Widget detailItem(
     String title,
     String value,
   ) {
 
     return Padding(
-
       padding:
           EdgeInsets.only(bottom: 16),
-
       child: Row(
-
         crossAxisAlignment:
             CrossAxisAlignment.start,
-
         children: [
-
           Expanded(
-
             flex: 2,
-
             child: Text(
-
               title,
-
               style: TextStyle(
                 fontWeight:
                     FontWeight.w600,
@@ -594,13 +528,9 @@ class _DetailIuranState
           SizedBox(width: 12),
 
           Expanded(
-
             flex: 3,
-
             child: Text(
-
               value,
-
               textAlign:
                   TextAlign.right,
             ),
@@ -610,10 +540,6 @@ class _DetailIuranState
     );
   }
 
-
-  // ==============================
-  // FORMAT TANGGAL
-  // ==============================
 
   String formatTanggal(
     String tanggal,
@@ -631,20 +557,15 @@ class _DetailIuranState
       );
 
       return
-
         "${parsed.day}/"
         "${parsed.month}/"
         "${parsed.year}";
-
     } catch (e) {
 
       return tanggal;
     }
   }
 
-// ==============================
-// FORMAT RUPIAH
-// ==============================
 
 String formatRupiah(dynamic nominal) {
   if (nominal == null || nominal.toString() == "null") {
@@ -660,14 +581,10 @@ String formatRupiah(dynamic nominal) {
   return formatter.format(int.tryParse(nominal.toString()) ?? 0);
 }
 
-  // ==============================
-  // TEXTFIELD DIALOG
-  // ==============================
+
 
   Widget textFieldDialog(
-
     String label,
-
     TextEditingController controller,
   ) {
 

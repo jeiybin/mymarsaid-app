@@ -42,56 +42,55 @@ class _EditWargaState extends State<EditWarga> {
         (rawStatus == 'aktif' || rawStatus == 'nonaktif') ? rawStatus : 'aktif';
   }
 
-  // UPDATE WARGA
+  // update warga
   Future<void> updateWarga() async {
     setState(() {
       isLoading = true;
     });
 
-  try {
-        final response = await http.put(
-          Uri.parse("${Api.baseUrl}/edit_warga/${widget.data['id_warga']}"),
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: jsonEncode({
-            "nama": nama.text,
-            "no_hp": hp.text,
-            "no_rumah": rumah.text,
-            "luas_tanah": int.parse(tanah.text),
-            "status": status,
-          }),
+    try {
+      final response = await http.put(
+        Uri.parse("${Api.baseUrl}/edit_warga/${widget.data['id_warga']}"),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: jsonEncode({
+          "nama": nama.text,
+          "no_hp": hp.text,
+          "no_rumah": rumah.text,
+          "luas_tanah": int.parse(tanah.text),
+          "status": status,
+        }),
+      );
+
+      setState(() {
+        isLoading = false;
+      });
+
+      if (response.statusCode == 200) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Berhasil diupdate")),
         );
 
-        setState(() {
-          isLoading = false;
-        });
-
-        // PERBAIKAN: Cukup cek apakah status code-nya 200 (Berhasil)
-        if (response.statusCode == 200) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("Berhasil diupdate")),
-          );
-          
-          Navigator.pop(context, true); 
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("Gagal update: ${response.statusCode}")),
-          );
-        }
-      } catch (e) {
-        setState(() {
-          isLoading = false;
-        });
-        print(e);
+        Navigator.pop(context, true);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Gagal update: ${response.statusCode}")),
+        );
       }
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+      print(e);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Edit Warga"),
+        title: Text("Edit Profil"),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20),
@@ -107,7 +106,7 @@ class _EditWargaState extends State<EditWarga> {
 
             // NO RUMAH
             textField(
-              "No Rumah",
+              "Nomor Rumah",
               rumah,
             ),
 
@@ -115,7 +114,7 @@ class _EditWargaState extends State<EditWarga> {
 
             // NO HP
             textField(
-              "No HP",
+              "Nomor HP",
               hp,
             ),
 
@@ -147,12 +146,14 @@ class _EditWargaState extends State<EditWarga> {
 
             SizedBox(height: 30),
 
-            // BUTTON
+            // tombol simpan
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: isLoading ? null : updateWarga,
                 style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).primaryColor,
+                  foregroundColor: Colors.white,
                   padding: EdgeInsets.symmetric(
                     vertical: 16,
                   ),
@@ -170,7 +171,7 @@ class _EditWargaState extends State<EditWarga> {
                         ),
                       )
                     : Text(
-                        "Update",
+                        "Simpan Perubahan",
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,

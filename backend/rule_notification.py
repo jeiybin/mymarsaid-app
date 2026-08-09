@@ -1,8 +1,6 @@
 from datetime import datetime
 
-# ======================
 # Mapping Bulan Indonesia
-# ======================
 bulan_indonesia = {
     1: "Januari",
     2: "Februari",
@@ -18,9 +16,8 @@ bulan_indonesia = {
     12: "Desember"
 }
 
-# ======================
+
 # Menentukan Kategori
-# ======================
 def get_kategori(jumlah_telat):
     """
     Menentukan kategori warga berdasarkan
@@ -40,9 +37,7 @@ def get_kategori(jumlah_telat):
     else:
         return "C"
 
-# ======================
 # Menghitung jumlah telat
-# ======================
 def hitung_telat(cursor, id_rumah):
     """
     Menghitung jumlah keterlambatan pembayaran
@@ -73,27 +68,19 @@ def hitung_telat(cursor, id_rumah):
 
     return jumlah_telat
 
-# ======================
 # Cek jadwal notifikasi
-# ======================
 def cek_jadwal(kategori):
 
     hari = datetime.now().day
-
     jatuh_tempo = 24
 
-    # ======================
     # Kategori A
-    # ======================
-
     if kategori == "A":
 
         return hari == jatuh_tempo - 1
 
-    # ======================
-    # Kategori B
-    # ======================
 
+    # Kategori B
     elif kategori == "B":
 
         return hari in [
@@ -102,10 +89,7 @@ def cek_jadwal(kategori):
             jatuh_tempo - 1
         ]
 
-    # ======================
     # Kategori C
-    # ======================
-
     elif kategori == "C":
 
         return hari in [
@@ -117,14 +101,10 @@ def cek_jadwal(kategori):
 
     return False
 
-# ======================
 # Cek jatuh tempo
-# ======================
 def cek_setelah_jatuh_tempo():
 
-
     hari = datetime.now().day
-
     jatuh_tempo = 24
 
     if hari <= jatuh_tempo:
@@ -135,11 +115,8 @@ def cek_setelah_jatuh_tempo():
     return selisih % 3 == 0
 
 
-# ======================
 # Cek Status Pembayaran
-# ======================
 def sudah_lunas(cursor, id_rumah):
-
     bulan = bulan_indonesia[datetime.now().month]
     tahun = datetime.now().year
 
@@ -158,15 +135,11 @@ def sudah_lunas(cursor, id_rumah):
 
     data = cursor.fetchone()
 
-    # Jika belum ada data iuran bulan ini
     if not data:
         return False
 
     return data["status"] == "Lunas"
 
-# ======================
 # cek awal bulan
-# ======================
 def cek_awal_bulan():
-
     return datetime.now().day == 1

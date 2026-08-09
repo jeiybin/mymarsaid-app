@@ -64,7 +64,7 @@ class _RekapPemasukanState extends State<RekapPemasukan> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Rekap Pemasukan"),
+        title: const Text("Daftar Pemasukan"),
       ),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())

@@ -66,7 +66,7 @@ class _AppDrawerState extends State<AppDrawer> {
           drawerItem(
             context,
             Icons.person,
-            "Profil",
+            "Profil Saya",
             ProfilWarga(),
           ),
 
