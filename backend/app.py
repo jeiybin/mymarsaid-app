@@ -1888,28 +1888,44 @@ def get_agenda_summary():
 
 
 # =========================
-# EDIT NAMA AGENDA
+# EDIT AGENDA
 # =========================
 @app.route('/edit_agenda', methods=['POST'])
 def edit_agenda():
-    id_agenda = request.form['id_agenda']
-    nama = request.form['nama']
+    data = request.json
 
+    id_agenda = data['id_agenda']
+    nama = data['nama']
+    tgl_mulai = data['tgl_mulai']
+    tgl_berakhir = data['tgl_berakhir']
+
+    db.ping(reconnect=True, attempts=3, delay=1)
     cursor = db.cursor()
 
+    query = """
+    UPDATE agenda
+    SET nama = %s,
+        tgl_mulai = %s,
+        tgl_berakhir = %s
+    WHERE id_agenda = %s
+    """
+
     cursor.execute(
-        "UPDATE agenda SET nama = %s WHERE id_agenda = %s",
-        (nama, id_agenda)
+        query,
+        (
+            nama,
+            tgl_mulai,
+            tgl_berakhir,
+            id_agenda
+        )
     )
 
     db.commit()
     cursor.close()
 
     return jsonify({
-        "success": True,
-        "message": "Agenda berhasil diubah"
+        "status": "success"
     })
-
 # =========================
 # HAPUS AGENDA
 # =========================

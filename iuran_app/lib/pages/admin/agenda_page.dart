@@ -242,6 +242,123 @@ class _AgendaPageState extends State<AgendaPage> {
     );
   }
 
+  void dialogEditAgenda(Map agenda) {
+    final namaController = TextEditingController(
+      text: agenda['nama'] ?? '',
+    );
+
+    final mulaiParts = agenda['tgl_mulai'].toString().split(' ');
+    final berakhirParts = agenda['tgl_berakhir'].toString().split(' ');
+
+    DateTime tglMulai = DateTime(
+      int.parse(mulaiParts[3]),
+      int.parse(convertMonthToNumber(mulaiParts[2])),
+      int.parse(mulaiParts[1]),
+    );
+
+    DateTime tglBerakhir = DateTime(
+      int.parse(berakhirParts[3]),
+      int.parse(convertMonthToNumber(berakhirParts[2])),
+      int.parse(berakhirParts[1]),
+    );
+
+    showDialog(
+      context: context,
+      builder: (context) => StatefulBuilder(
+        builder: (context, setModalState) => AlertDialog(
+          title: const Text("Edit Agenda"),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: namaController,
+                  decoration: const InputDecoration(
+                    labelText: "Nama Agenda",
+                  ),
+                ),
+                ListTile(
+                  title: Text(
+                    "Mulai: ${tglMulai.day}/${tglMulai.month}/${tglMulai.year}",
+                  ),
+                  onTap: () async {
+                    final picked = await showDatePicker(
+                      context: context,
+                      initialDate: tglMulai,
+                      firstDate: DateTime(2020),
+                      lastDate: DateTime(2100),
+                    );
+
+                    if (picked != null) {
+                      setModalState(() {
+                        tglMulai = picked;
+                      });
+                    }
+                  },
+                ),
+                ListTile(
+                  title: Text(
+                    "Berakhir: ${tglBerakhir.day}/${tglBerakhir.month}/${tglBerakhir.year}",
+                  ),
+                  onTap: () async {
+                    final picked = await showDatePicker(
+                      context: context,
+                      initialDate: tglBerakhir,
+                      firstDate: DateTime(2020),
+                      lastDate: DateTime(2100),
+                    );
+
+                    if (picked != null) {
+                      setModalState(() {
+                        tglBerakhir = picked;
+                      });
+                    }
+                  },
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text("Batal"),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                final response = await http.post(
+                  Uri.parse(
+                    "${Api.baseUrl}/edit_agenda",
+                  ),
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: jsonEncode({
+                    "id_agenda": agenda['id_agenda'].toString(),
+                    "nama": namaController.text,
+                    "tgl_mulai":
+                        "${tglMulai.year}-${tglMulai.month.toString().padLeft(2, '0')}-${tglMulai.day.toString().padLeft(2, '0')}",
+                    "tgl_berakhir":
+                        "${tglBerakhir.year}-${tglBerakhir.month.toString().padLeft(2, '0')}-${tglBerakhir.day.toString().padLeft(2, '0')}",
+                  }),
+                );
+
+                print("STATUS EDIT: ${response.statusCode}");
+                print("RESPONSE EDIT: ${response.body}");
+
+                Navigator.pop(context);
+
+                if (response.statusCode == 200) {
+                  fetchAgenda();
+                }
+              },
+              child: const Text("Simpan"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -322,11 +439,31 @@ class _AgendaPageState extends State<AgendaPage> {
                           ),
                           trailing: PopupMenuButton<String>(
                             onSelected: (value) {
-                              if (value == 'hapus') {
+                              if (value == 'edit') {
+                                dialogEditAgenda(item);
+                              } else if (value == 'hapus') {
                                 dialogHapusAgenda(item);
                               }
                             },
                             itemBuilder: (context) => [
+                              PopupMenuItem(
+                                value: 'edit',
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.edit_outlined,
+                                      color: Theme.of(context).primaryColor,
+                                    ),
+                                    SizedBox(width: 10),
+                                    Text(
+                                      "Edit Agenda",
+                                      style: TextStyle(
+                                        color: Theme.of(context).primaryColor,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                               const PopupMenuItem(
                                 value: 'hapus',
                                 child: Row(
