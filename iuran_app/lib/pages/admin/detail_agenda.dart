@@ -142,10 +142,6 @@ class _DetailAgendaState extends State<DetailAgenda> {
                       .ellipsis,  
                 ),
               ),
-              IconButton(
-                icon: const Icon(Icons.edit),
-                onPressed: dialogEditAgenda,
-              ),
             ],
           ),
           elevation: 0,
@@ -489,56 +485,6 @@ class _DetailAgendaState extends State<DetailAgenda> {
           ],
         ),
       ),
-    );
-  }
-
-  void dialogEditAgenda() {
-    final namaController = TextEditingController(text: widget.agenda['nama']);
-
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text("Edit Agenda"),
-          content: TextFormField(
-            controller: namaController,
-            autofocus: true,
-            decoration: const InputDecoration(
-              labelText: "Nama Agenda",
-              border: OutlineInputBorder(),
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text("Batal"),
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                final response = await http.post(
-                  Uri.parse("${Api.baseUrl}/edit_agenda"),
-                  body: {
-                    "id_agenda": widget.agenda['id_agenda'].toString(),
-                    "nama": namaController.text.trim(),
-                  },
-                );
-
-                if (response.statusCode == 200) {
-                  setState(() {
-                    widget.agenda['nama'] = namaController.text.trim();
-                  });
-
-                  Navigator.of(context).pop();
-                }
-              },
-              child: const Text("Simpan"),
-            ),
-          ],
-        );
-      },
     );
   }
 }
