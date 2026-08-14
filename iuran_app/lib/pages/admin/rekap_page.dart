@@ -4,8 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-import 'detail_pemasukan.dart';
-import 'detail_pengeluaran.dart';
+import 'daftar_pemasukan.dart';
+import 'daftar_pengeluaran.dart';
 import 'package:iuran_app/api.dart';
 
 class RekapPage extends StatefulWidget {

@@ -155,7 +155,6 @@ class _DetailPengeluaranPageState extends State<DetailPengeluaranPage> {
     );
   }
 
-  // FORMAT RUPIAH
   String formatRupiah(dynamic nominal) {
     if (nominal == null) return "Rp 0";
     return NumberFormat.currency(
@@ -165,7 +164,6 @@ class _DetailPengeluaranPageState extends State<DetailPengeluaranPage> {
     ).format(int.tryParse(nominal.toString()) ?? 0);
   }
 
-  // WIDGET TEXTFIELD KONSISTEN
   Widget textField(String label, TextEditingController controller) {
     return TextField(
       controller: controller,

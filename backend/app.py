@@ -55,14 +55,10 @@ firebase_admin.initialize_app(cred)
 
 @app.route('/login', methods=['POST'])
 def login():
-
     data = request.json
-
     username = data.get("username")
     password = data.get("password")
-
     cursor = db.cursor(dictionary=True)
-
     cursor.execute("""
         SELECT
             id,
@@ -970,7 +966,6 @@ def update_iuran():
             %s
 
         )
-
         """
 
         cursor.execute(

@@ -385,129 +385,37 @@ class _AksiPengeluaranPageState
 
             const Spacer(),
 
-            OutlinedButton.icon(
-              icon:
-                  const Icon(
-                Icons.edit,
-              ),
-              label:
-                  const Text(
-                "Edit Data",
-              ),
-              onPressed:
-                  tampilkanFormEdit,
-              style:
-                  OutlinedButton
-                      .styleFrom(
-                minimumSize:
-                    const Size(
-                  double.infinity,
-                  55,
-                ),
-              ),
-            ),
-
-            const SizedBox(
-              height: 15,
-            ),
-
             ElevatedButton.icon(
-              icon:
-                  const Icon(
-                Icons.delete,
-                color:
-                    Colors.white,
-              ),
-              label:
-                  const Text(
-                "Hapus Data",
-                style:
-                    TextStyle(
-                  color: Colors
-                      .white,
-                ),
-              ),
-              onPressed:
-                  () async {
-                if (currentId ==
-                    null)
-                  return;
-
-                bool? confirm =
-                    await showDialog(
-                  context:
-                      context,
-                  builder:
-                      (_) =>
-                          AlertDialog(
-                    title:
-                        const Text(
-                      "Hapus",
-                    ),
-                    content:
-                        const Text(
-                      "Yakin ingin menghapus?",
-                    ),
+              icon: const Icon(Icons.edit),
+              label: const Text("Edit Data"),
+              onPressed: () => tampilkanFormEdit(),
+              style: ElevatedButton.styleFrom(minimumSize: const Size(double.infinity, 55)),
+            ),
+            const SizedBox(height: 15),
+            ElevatedButton.icon(
+              icon: const Icon(Icons.delete, color: Colors.white),
+              label: const Text("Hapus Data", style: TextStyle(color: Colors.white)),
+              onPressed: () async {
+                bool confirm = await showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text("Konfirmasi"),
+                    content: Text("Yakin ingin menghapus data ini?"),
                     actions: [
-
-                      TextButton(
-                        onPressed:
-                            () =>
-                                Navigator.pop(
-                                    context),
-                        child:
-                            const Text(
-                          "Batal",
-                        ),
-                      ),
-
-                      ElevatedButton(
-                        onPressed:
-                            () =>
-                                Navigator.pop(
-                                  context,
-                                  true,
-                                ),
-                        child:
-                            const Text(
-                          "Hapus",
-                        ),
-                      ),
+                      TextButton(onPressed: () => Navigator.pop(context, false), child: Text("Batal")),
+                      ElevatedButton(onPressed: () => Navigator.pop(context, true), child: Text("Hapus")),
                     ],
                   ),
                 );
-
-                if (confirm ==
-                    true) {
-                  final response =
-                      await http
-                          .delete(
-                    Uri.parse(
-                      "${Api.baseUrl}/hapus_pengeluaran/$currentId",
-                    ),
-                  );
-
-                  if (response
-                          .statusCode ==
-                      200) {
-                    widget
-                        .refreshParent();
-
-                    Navigator.pop(
-                        context);
-                  }
+                if (confirm == true) {
+                  await http.delete(Uri.parse("${Api.baseUrl}/hapus_pengeluaran/${widget.item['id']}"));
+                  widget.refreshParent();
+                  Navigator.pop(context);
                 }
               },
-              style:
-                  ElevatedButton
-                      .styleFrom(
-                backgroundColor:
-                    Colors.red,
-                minimumSize:
-                    const Size(
-                  double.infinity,
-                  55,
-                ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red, 
+                minimumSize: const Size(double.infinity, 55)
               ),
             ),
           ],
