@@ -105,7 +105,7 @@ def cek_jadwal(kategori):
 def cek_setelah_jatuh_tempo():
 
     hari = datetime.now().day
-    jatuh_tempo = 24
+    jatuh_tempo = 21
 
     if hari <= jatuh_tempo:
         return False
