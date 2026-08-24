@@ -72,7 +72,7 @@ def hitung_telat(cursor, id_rumah):
 def cek_jadwal(kategori):
 
     hari = datetime.now().day
-    jatuh_tempo = 21
+    jatuh_tempo = 24
 
     # Kategori A
     if kategori == "A":
@@ -105,7 +105,7 @@ def cek_jadwal(kategori):
 def cek_setelah_jatuh_tempo():
 
     hari = datetime.now().day
-    jatuh_tempo = 21
+    jatuh_tempo = 24
 
     if hari <= jatuh_tempo:
         return False
