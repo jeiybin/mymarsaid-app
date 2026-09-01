@@ -296,17 +296,6 @@ def run_notification_scheduler():
 
     cek_notifikasi()
 
-#test
-@app.route('/test_notifikasi_iuran')
-def test_notifikasi_iuran():
-
-    cek_notifikasi()
-
-    return jsonify({
-        "status": "success",
-        "message": "Rule notification dijalankan"
-    })
-
 # =========================
 # BACKGROUND SCHEDULER
 # =========================
@@ -323,7 +312,7 @@ scheduler.add_job(
 
 
 # =========================
-# TEST RULE ENGINE
+# TEST 
 # =========================
 @app.route('/test_rule')
 def test_rule():
