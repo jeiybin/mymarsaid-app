@@ -104,7 +104,7 @@ def cek_jadwal(kategori):
 # notifikasi setelah jatuh tempo
 def cek_setelah_jatuh_tempo():
 
-    hari = 27
+    hari = datetime.now().day
     jatuh_tempo = 24
 
     if hari <= jatuh_tempo:
@@ -142,4 +142,4 @@ def sudah_lunas(cursor, id_rumah):
 
 # cek awal bulan
 def cek_awal_bulan():
-    return datetime.now().day == 2
+    return datetime.now().day == 1
